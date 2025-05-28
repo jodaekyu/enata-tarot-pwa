@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>에나타 AI 샘</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ✅ [추가] PWA manifest 연결 -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0d0d0d" />
+
+  <style>
+    /* [중략: 기존 스타일은 그대로 유지됨] */
+  </style>
+</head>
+<body>
+  <h1>에나타 AI 샘</h1>
+
+  <div class="question-area">
+    <input type="text" id="userQuestion" placeholder="이곳에 질문을 작성후 카드 하나를 선택하세요" />
+  </div>
+
+  <div class="cards" id="cardArea">
+    <!-- 카드들 -->
+    <div class="card" onclick="selectCard(this, 0)">
+      <div class="card-inner">
+        <div class="card-back"><img src="images/tarot_back.png" alt="뒷면"></div>
+        <div class="card-front"><img /></div>
+      </div>
+    </div>
+    <div class="card" onclick="selectCard(this, 1)">
+      <div class="card-inner">
+        <div class="card-back"><img src="images/tarot_back.png" alt="뒷면"></div>
+        <div class="card-front"><img /></div>
+      </div>
+    </div>
+    <div class="card" onclick="selectCard(this, 2)">
+      <div class="card-inner">
+        <div class="card-back"><img src="images/tarot_back.png" alt="뒷면"></div>
+        <div class="card-front"><img /></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spinner" id="spinner"></div>
+  <div class="result" id="resultArea" style="display: none;"></div>
+  <a class="consult-button" href="https://m.booking.naver.com/booking/13/bizes/198330?theme=place&entry=pll" target="_blank">바로 상담하기</a>
+
+  <script src="script.js"></script>
+  <script src="cardList.js"></script>
+
+  <!-- ✅ [추가] Service Worker 등록 -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log("✅ Service Worker 등록됨"))
+          .catch(err => console.error("❌ 등록 실패:", err));
+      });
+    }
+  </script>
+</body>
+</html>
